@@ -4,7 +4,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -24,10 +24,10 @@ public class Helpers {
         return count;
     }
 
-    public static Set<String> listFilesInDownloadDirectory() {
+    public static List<String> listFilesInDownloadDirectory() {
         return Stream.of(new File(DOWNLOAD_DIR).listFiles())
                 .filter(file -> !file.isDirectory())
                 .map(File::getName)
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 }

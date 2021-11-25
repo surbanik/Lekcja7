@@ -9,7 +9,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-import java.util.Set;
+import java.util.List;
 
 import static java.lang.Thread.sleep;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -45,8 +45,8 @@ public class DownloadTest extends TestBase {
     @Test
     @Order(2)
     public void isFileExist(){
-        Set filesSet = Helpers.listFilesInDownloadDirectory();
-        assertTrue(filesSet.contains("test-file-to-download.xlsx"));
+        List filesList = Helpers.listFilesInDownloadDirectory();
+        assertTrue(filesList.contains("test-file-to-download.xlsx"));
     }
 
 }

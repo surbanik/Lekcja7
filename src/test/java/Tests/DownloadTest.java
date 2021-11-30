@@ -37,7 +37,7 @@ public class DownloadTest extends TestBase {
         testFileToDownloadButton.click();
         //wiem że sleep nie jest dobrym rozwiązaniem ale nie mogę wpaść na nic innego. Próbowałem FluentWait ale metoda .until przyjmuje argumenty typu Function i nie wiem jak sobie z tym poradzić
         //a jeśli nie damy sleep() numberOfFilesAfterDownload jest pobierany szybciej niż plik zdąży się pobrać
-        sleep(100);
+        sleep(1000);
         int numberOfFilesAfterDownload = Helpers.countFilesInDownloadDirectory();
         assertEquals(expectedNumberOfFilesAfterDownload, numberOfFilesAfterDownload);
     }

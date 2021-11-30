@@ -1,9 +1,13 @@
 package Tests;
 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.FluentWait;
+
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -30,4 +34,5 @@ public class Helpers {
                 .map(File::getName)
                 .collect(Collectors.toList());
     }
+
 }

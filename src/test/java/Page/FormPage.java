@@ -17,7 +17,7 @@ public class FormPage {
     public int formRandomContinentsIndex = randomNumber;
     public String formSeleniumCommandsId = "selectSeleniumCommands";
     public String formFileId = "chooseFile";
-    public String filePath = System.getProperty("user.dir")+"/src/main/resources/uploadFile.txt";
+    public String filePath = System.getProperty("user.dir")+"\\src\\main\\resources\\uploadFile.txt";
     public String signInButtonXpath = "//button[text()='Sign in']";
     public String testFileToDownloadButtonCss = "[role=\"button\"]";
     public String validatorMessageId = "validator-message";

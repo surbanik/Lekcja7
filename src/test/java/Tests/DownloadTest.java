@@ -27,7 +27,7 @@ public class DownloadTest extends TestBase {
     public void downloadTest() throws InterruptedException {
 
         driver.get("https://seleniumui.moderntester.pl/");
-        logger.info("Otwarto stronę: ");
+        logger.info("Otwarto stronę: https://seleniumui.moderntester.pl/");
         Actions action = new Actions(driver);
         FormPage formPage = new FormPage();
 

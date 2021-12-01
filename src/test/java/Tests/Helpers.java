@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 
 public class Helpers {
 
-    final static String DOWNLOAD_DIR = System.getProperty("user.dir") + File.separator + "src" + File.separator + "test" + File.separator + "java" + File.separator + "resources";
+    final static String DOWNLOAD_DIR = System.getProperty("user.dir") + File.separator + "src" + File.separator + "test" + File.separator + "java" + File.separator + "downloadedFiles";
 
     public static int countFilesInDownloadDirectory(){
         int count=0;

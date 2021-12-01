@@ -8,6 +8,8 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -17,13 +19,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class DownloadTest extends TestBase {
+    private Logger logger = LoggerFactory.getLogger(DownloadTest.class);
 
-    int expectedNumberOfFilesAfterDownload=0;
+    int numberOfFilesBeforeDownload=0;
     @Test
     @Order(1)
     public void downloadTest() throws InterruptedException {
 
         driver.get("https://seleniumui.moderntester.pl/");
+        logger.info("Otwarto stronę: ");
         Actions action = new Actions(driver);
         FormPage formPage = new FormPage();
 
@@ -33,19 +37,20 @@ public class DownloadTest extends TestBase {
 
         WebElement testFileToDownloadButton = driver.findElement(By.cssSelector(formPage.testFileToDownloadButtonCss));
 
-        expectedNumberOfFilesAfterDownload = Helpers.countFilesInDownloadDirectory() + 1;
+        numberOfFilesBeforeDownload = Helpers.countFilesInDownloadDirectory();
+        logger.info("Liczba plików w folderze {} przed pobraniem pliku wynosi {}",Helpers.DOWNLOAD_DIR,numberOfFilesBeforeDownload);
         testFileToDownloadButton.click();
-        //wiem że sleep nie jest dobrym rozwiązaniem ale nie mogę wpaść na nic innego. Próbowałem FluentWait ale metoda .until przyjmuje argumenty typu Function i nie wiem jak sobie z tym poradzić
-        //a jeśli nie damy sleep() numberOfFilesAfterDownload jest pobierany szybciej niż plik zdąży się pobrać
         sleep(1000);
         int numberOfFilesAfterDownload = Helpers.countFilesInDownloadDirectory();
-        assertEquals(expectedNumberOfFilesAfterDownload, numberOfFilesAfterDownload);
+        logger.info("Liczba plików w folderze {} po pobraniu pliku wynosi {}",Helpers.DOWNLOAD_DIR,numberOfFilesAfterDownload);
+        assertEquals(numberOfFilesBeforeDownload+1, numberOfFilesAfterDownload);
     }
 
     @Test
     @Order(2)
     public void isFileExist(){
         List filesList = Helpers.listFilesInDownloadDirectory();
+        logger.info("Liczba plików w folderze wynosi {}",filesList.size());
         assertTrue(filesList.contains("test-file-to-download.xlsx"));
     }
 

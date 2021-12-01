@@ -5,12 +5,17 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FormTest extends TestBase {
+    private Logger logger = LoggerFactory.getLogger(FormTest.class);
 
     @Test
     public void formTest() {
+
 
         driver.get("https://seleniumui.moderntester.pl/");
         Actions action = new Actions(driver);
@@ -19,6 +24,7 @@ public class FormTest extends TestBase {
         WebElement menuBasic = driver.findElement(By.linkText(formPage.menuBasicLinkText));
         WebElement menuBasicForm = driver.findElement(By.id(formPage.basicFormId));
         action.moveToElement(menuBasic).moveToElement(menuBasicForm).click().build().perform();
+        logger.info("Użytkownik przeszedł do zakładki Basic/Form");
 
         WebElement firstName = driver.findElement(By.id(formPage.formFirstNameId));
         WebElement lastName = driver.findElement(By.id(formPage.formLastNameId));
@@ -32,19 +38,39 @@ public class FormTest extends TestBase {
         Select continents = new Select(driver.findElement(By.id(formPage.formContinentsId)));
         Select seleniumCommands = new Select(driver.findElement(By.id(formPage.formSeleniumCommandsId)));
 
-        firstName.sendKeys("Jan");
-        lastName.sendKeys("Kowalski");
-        email.sendKeys("JanKowalski@firma.pl");
+
+        String userFirstName = "Jan";
+        String userLastName = "Kowalski";
+        String usersEmail = "JanKowalski@firma.pl";
+        String userAge = "21";
+        String expectedMessage = "Form send with success";
+
+
+        firstName.sendKeys(userFirstName);
+        logger.info("W pole: {} wpisano wartość: {}",formPage.formFirstNameId,userFirstName);
+        lastName.sendKeys(userLastName);
+        logger.info("W pole: {} wpisano wartość: {}",formPage.formLastNameId,userLastName);
+        email.sendKeys(usersEmail);
+        logger.info("W pole: {} wpisano wartość: {}",formPage.formEmailId,usersEmail);
         sex.click();
-        age.sendKeys("21");
+        logger.info("Użytkownik kliknął w pole: {}",formPage.formSexId);
+        age.sendKeys(userAge);
+        logger.info("W pole: {} wpisano wartość: {}",formPage.formAgeId,userAge);
         yoe.click();
+        logger.info("Użytkownik kliknął w pole: {}",formPage.formRandomYOEId);
         profession.click();
+        logger.info("Użytkownik kliknął w pole: {}",formPage.formProfessionId);
         continents.selectByIndex(formPage.formRandomContinentsIndex);
+        logger.info("Użytkownik wybrał kontynent numer{}",formPage.formRandomContinentsIndex);
         seleniumCommands.selectByVisibleText("Switch Commands");
         seleniumCommands.selectByVisibleText("Wait Commands");
+        logger.info("Użytkownik wybrał {}, {}","Switch Commands","Wait Commands");
         file.sendKeys(formPage.filePath);
+        logger.info("W pole: {} wpisano wartość: {}",formPage.formFileId,formPage.filePath);
         signInButton.click();
+        logger.info("Użytkownik kliknął w pole: {}",formPage.signInButtonXpath);
         String validatorMessage = driver.findElement(By.id(formPage.validatorMessageId)).getText();
-        assertEquals(validatorMessage, "Form send with success");
+        logger.info("Wiadomość walidacyjna: {}",validatorMessage);
+        assertEquals(expectedMessage, validatorMessage);
     }
 }

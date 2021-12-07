@@ -24,5 +24,7 @@ public class MainPage {
     public String widgetsProgressBarId = "progressbar-item";
     public String widgetsSelectMenuId = "selectmenu-item";
     public String othersHighSiteId = "high-site-item";
+    public String interactionsSortableId = "sortable-item";
+
 
 }

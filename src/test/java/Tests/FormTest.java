@@ -1,6 +1,10 @@
 package Tests;
+
 import Page.FormPage;
+import Page.MainPage;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -10,6 +14,7 @@ import org.slf4j.LoggerFactory;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@Execution(ExecutionMode.CONCURRENT)
 public class FormTest extends TestBase {
     private Logger logger = LoggerFactory.getLogger(FormTest.class);
 
@@ -18,11 +23,13 @@ public class FormTest extends TestBase {
 
 
         driver.get("https://seleniumui.moderntester.pl/");
+        logger.info("Otwarto stronę: https://seleniumui.moderntester.pl/");
         Actions action = new Actions(driver);
         FormPage formPage = new FormPage();
+        MainPage mainPage = new MainPage();
 
-        WebElement menuBasic = driver.findElement(By.linkText(formPage.menuBasicLinkText));
-        WebElement menuBasicForm = driver.findElement(By.id(formPage.basicFormId));
+        WebElement menuBasic = driver.findElement(By.linkText(mainPage.menuBasicLinkText));
+        WebElement menuBasicForm = driver.findElement(By.id(mainPage.basicFormId));
         action.moveToElement(menuBasic).moveToElement(menuBasicForm).click().build().perform();
         logger.info("Użytkownik przeszedł do zakładki Basic/Form");
 
@@ -47,30 +54,30 @@ public class FormTest extends TestBase {
 
 
         firstName.sendKeys(userFirstName);
-        logger.info("W pole: {} wpisano wartość: {}",formPage.formFirstNameId,userFirstName);
+        logger.info("W pole: {} wpisano wartość: {}", formPage.formFirstNameId, userFirstName);
         lastName.sendKeys(userLastName);
-        logger.info("W pole: {} wpisano wartość: {}",formPage.formLastNameId,userLastName);
+        logger.info("W pole: {} wpisano wartość: {}", formPage.formLastNameId, userLastName);
         email.sendKeys(usersEmail);
-        logger.info("W pole: {} wpisano wartość: {}",formPage.formEmailId,usersEmail);
+        logger.info("W pole: {} wpisano wartość: {}", formPage.formEmailId, usersEmail);
         sex.click();
-        logger.info("Użytkownik kliknął w pole: {}",formPage.formSexId);
+        logger.info("Użytkownik kliknął w pole: {}", formPage.formSexId);
         age.sendKeys(userAge);
-        logger.info("W pole: {} wpisano wartość: {}",formPage.formAgeId,userAge);
+        logger.info("W pole: {} wpisano wartość: {}", formPage.formAgeId, userAge);
         yoe.click();
-        logger.info("Użytkownik kliknął w pole: {}",formPage.formRandomYOEId);
+        logger.info("Użytkownik kliknął w pole: {}", formPage.formRandomYOEId);
         profession.click();
-        logger.info("Użytkownik kliknął w pole: {}",formPage.formProfessionId);
+        logger.info("Użytkownik kliknął w pole: {}", formPage.formProfessionId);
         continents.selectByIndex(formPage.formRandomContinentsIndex);
-        logger.info("Użytkownik wybrał kontynent numer{}",formPage.formRandomContinentsIndex);
+        logger.info("Użytkownik wybrał kontynent numer{}", formPage.formRandomContinentsIndex);
         seleniumCommands.selectByVisibleText("Switch Commands");
         seleniumCommands.selectByVisibleText("Wait Commands");
-        logger.info("Użytkownik wybrał {}, {}","Switch Commands","Wait Commands");
+        logger.info("Użytkownik wybrał {}, {}", "Switch Commands", "Wait Commands");
         file.sendKeys(formPage.filePath);
-        logger.info("W pole: {} wpisano wartość: {}",formPage.formFileId,formPage.filePath);
+        logger.info("W pole: {} wpisano wartość: {}", formPage.formFileId, formPage.filePath);
         signInButton.click();
-        logger.info("Użytkownik kliknął w pole: {}",formPage.signInButtonXpath);
+        logger.info("Użytkownik kliknął w pole: {}", formPage.signInButtonXpath);
         String validatorMessage = driver.findElement(By.id(formPage.validatorMessageId)).getText();
-        logger.info("Wiadomość walidacyjna: {}",validatorMessage);
+        logger.info("Wiadomość walidacyjna: {}", validatorMessage);
         assertEquals(expectedMessage, validatorMessage);
     }
 }

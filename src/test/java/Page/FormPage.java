@@ -4,8 +4,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class FormPage {
     int randomNumber = ThreadLocalRandom.current().nextInt(1, 7);
-    public String menuBasicLinkText = "Basic";
-    public String basicFormId = "form-item";
+
     public String formFirstNameId = "inputFirstName3";
     public String formLastNameId = "inputLastName3";
     public String formEmailId = "inputEmail3";

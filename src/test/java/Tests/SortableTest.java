@@ -1,12 +1,16 @@
 package Tests;
 
+import Page.DemoQAPage;
 import Page.MainPage;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
+import java.util.Arrays;
 import java.util.Random;
+
+import static java.lang.Thread.sleep;
 
 class SortableTest extends TestBase {
 
@@ -14,7 +18,7 @@ class SortableTest extends TestBase {
 
 
     @Test
-    public void sortableTest() {
+    public void sortableTest() throws InterruptedException {
         driver.get("https://seleniumui.moderntester.pl/");
         Actions action = new Actions(driver);
         WebElement menuInteractions = driver.findElement(By.linkText(mainPage.menuInteractionsLinkText));
@@ -23,17 +27,19 @@ class SortableTest extends TestBase {
 
         int[] tab = {1, 2, 3, 4, 5, 6, 7};
         shuffleArray(tab);
+        System.out.println(Arrays.toString(tab));
         for (int i = 0; i < tab.length; i++) {
             moveElementTo(tab[i], i + 1);
         }
+        sleep(1000000);
     }
 
     //dragAndDrop nie działa więc użyłem takiej kombinacji
     public void moveElementTo(int whichItem, int toWhatPosition) {
         Actions action = new Actions(driver);
-        action.clickAndHold(driver.findElement(By.xpath("//li[text()='Item " + whichItem + "']")))
-                .moveByOffset(0, 200)
-                .release(driver.findElement(By.cssSelector("#sortable>li:nth-child(" + toWhatPosition + ")")))
+        action.dragAndDrop(driver.findElement(By.xpath("//li[text()='Item " + whichItem + "']")),
+                driver.findElement(By.cssSelector("#sortable>li:nth-child(" + toWhatPosition + ")")))
+                .build()
                 .perform();
     }
 

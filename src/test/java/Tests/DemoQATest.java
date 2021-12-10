@@ -89,44 +89,5 @@ public class DemoQATest extends TestBase {
         listOfSelectedElements = driver.findElements(By.className("css-1rhbuit-multiValue"));
         System.out.println(listOfSelectedElements.size());
         assertTrue(listOfSelectedElements.isEmpty());
-
-
-
-
-//
-//        WebElement randomCItem = driver.findElement(By.id("react-select-2-option-" + random));
-//        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", randomCItem);
-//
-//        wait.until(ExpectedConditions.elementToBeClickable(randomCItem));
-
-//        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", randomCItem);
-//        action.moveToElement(randomCItem).click().build().perform();
-//
-//
-
-////        wait.until(ExpectedConditions.numberOfElementsToBe(By.className("css-1rhbuit-multiValue"),expectedNumberOfSelectedElements));
-//
-//
-
-
-
-
-
-//        sleep(1000);
-//        randomCItem.click();
-////        WebElement randomCItem = driver.findElement(By.id("react-select-2-option-"+random));
-////        wait.until(ExpectedConditions.elementToBeClickable(By.id("react-select-2-option-"+1)));
-////        WebElement randomCItem = driver.findElement(By.id("react-select-2-option-"+1));
-//        //WebElement randomCItem = driver.findElement(By.xpath("//div[@class='subjects-auto-complete__menu css-26l3qy-menu']/*/*[@id='react-select-2-option-"+random+"']"));
-//        try {
-//            WebElement randomCItem = driver.findElement(By.id("react-select-2-option-1"));
-//            wait.until(ExpectedConditions.elementToBeClickable(randomCItem));
-//            randomCItem.click();
-//        } catch (Exception e) {
-//            WebElement randomCItem = driver.findElement(By.id("react-select-2-option-1"));
-//            wait.until(ExpectedConditions.elementToBeClickable(randomCItem));
-//            randomCItem.click();
-//        }
-//        sleep(1000);
     }
 }

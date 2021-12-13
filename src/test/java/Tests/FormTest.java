@@ -33,6 +33,8 @@ public class FormTest extends TestBase {
         action.moveToElement(menuBasic).moveToElement(menuBasicForm).click().build().perform();
         logger.info("Użytkownik przeszedł do zakładki Basic/Form");
 
+
+
         WebElement firstName = driver.findElement(By.id(formPage.formFirstNameId));
         WebElement lastName = driver.findElement(By.id(formPage.formLastNameId));
         WebElement email = driver.findElement(By.id(formPage.formEmailId));

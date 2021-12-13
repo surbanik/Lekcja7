@@ -2,7 +2,6 @@ package Tests;
 
 import Page.AlertPage;
 import Page.MainPage;
-
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -14,7 +13,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
@@ -44,6 +42,7 @@ public class AlertTests extends TestBase {
         assertEquals(alertLabel, "OK button pressed");
         driver.close();
     }
+
     @Test
     @Order(2)
     public void promptAlert() {

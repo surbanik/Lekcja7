@@ -59,6 +59,8 @@ public class TestBase {
         driver.manage().window().maximize();
         logger.info("Webdriver window maximized");
 
+        driver.get("https://seleniumui.moderntester.pl/");
+
     }
 
     @AfterEach

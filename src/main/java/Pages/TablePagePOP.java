@@ -10,18 +10,6 @@ import java.util.List;
 
 public class TablePagePOP extends BasePage {
 
-//
-//    Zadania:
-//    1. W selenium basic
-//    dodać nową wersję testu formularza i oprzeć go na POP (pamiętajcie ze page object tworzymy w src>main>java>pages)
-//    to samo zrobić dla testu tabeli
-//    dla chętnych: dowiedzieć się jak działa DefaultElementLocatorFactory i jak jej użycie zmienia działanie mechanizmu PageFactory,
-//    a następnie projektując PageObject dla testu tabeli zrobić TablePage zawierający List<RowPage>, gdzie RowPage to będzie page object wiersza w tabeli :)
-//
-//    public RowPage(WebElement row) {​​​​
-//        PageFactory.initElements(new DefaultElementLocatorFactory(row), this);
-//    }.
-
 
     public TablePagePOP(WebDriver driver) {
         super(driver);
